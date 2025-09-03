@@ -1,7 +1,7 @@
 const moviesList = document.getElementById("movies-list");
 
 async function getTrendingMovies() {
-  const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`;
+  const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {

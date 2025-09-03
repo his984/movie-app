@@ -54,6 +54,21 @@ nav a:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+/* Loader */
+.loading-text {
+  place-self: center;
+  background: linear-gradient(90deg, #c3cfe2, #764ba2) -100%/ 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font: 700 clamp(2em, 10vw, 5em) exo, sans-serif;
+  animation: shimmer 2s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: 100%;
+  }
+}
 /* main Grid */
 main {
   display: grid;
@@ -78,7 +93,7 @@ main {
 }
 .movie-img {
   width: 100%;
-  height: 100%;
+  height: 350px;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
