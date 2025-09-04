@@ -100,7 +100,7 @@ main {
 .movie-info {
   padding: 15px;
   background-color: white;
-  min-height: 80px;
+  min-height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,6 +110,17 @@ main {
   font-weight: 600;
   color: #333;
   line-height: 1.3;
+}
+/* Load More Button  */
+button {
+  width: 100%;
+  border: none;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  cursor: pointer;
 }
 /* Footer */
 footer {

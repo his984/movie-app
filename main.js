@@ -1,15 +1,22 @@
 const moviesList = document.getElementById("movies-list");
+const loadMoreBtn = document.getElementById("load-more-btn");
+let currentPage = 1;
+loadMoreBtn.disabled = true;
+loadMoreBtn.textContent = "Loading...";
 
-async function getTrendingMovies() {
-  const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
+async function getTrendingMovies(page = 1) {
+  const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=${page}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
     const result = await response.json();
-    console.log(result.results);
+    if (currentPage >= result.total_pages) {
+      loadMoreBtn.style.display = "none";
+    }
     const moviesArr = result.results;
+
     let moviesHtml = moviesArr
       .map(
         (movie) =>
@@ -23,10 +30,20 @@ async function getTrendingMovies() {
           `
       )
       .join("");
-
-    moviesList.innerHTML = moviesHtml;
+    if (page === 1) {
+      moviesList.innerHTML = "";
+    }
+    moviesList.insertAdjacentHTML("beforeend", moviesHtml);
+    loadMoreBtn.disabled = false;
+    loadMoreBtn.textContent = "Load More ...";
   } catch (error) {
     console.error(error.message);
   }
 }
+
 getTrendingMovies();
+
+loadMoreBtn.addEventListener("click", function () {
+  currentPage++;
+  getTrendingMovies(currentPage);
+});
